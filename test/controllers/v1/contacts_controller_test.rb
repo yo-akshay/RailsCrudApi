@@ -8,8 +8,6 @@ class V1::ContactsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get v1_contacts_url
     contacts = JSON.parse(@response.body)
-    # puts("1 = #{contacts.last["first_name"]}")
-    # puts("#{@contact.first_name}")
     assert_response :success
     assert contacts.last["first_name"] == @contact.first_name
   end
@@ -25,8 +23,6 @@ class V1::ContactsControllerTest < ActionDispatch::IntegrationTest
   test "should show contact" do
     get v1_contact_url("#{@contact.id}")
     contact = JSON.parse(@response.body)
-    # puts("contact = #{contact.first["id"]}")
-    # puts("@contact = #{@contact.id}")
     assert_response :success
     assert contact.first["id"] == @contact.id
   end
@@ -34,8 +30,6 @@ class V1::ContactsControllerTest < ActionDispatch::IntegrationTest
   test "should destroy contact" do
     assert_difference('Contact.count', -1) do
       delete v1_contact_url("#{@contact.id}")
-      # contact = JSON.parse(@response.body)
-      # puts("contact = #{@head}")
     end
 
     assert_response :success
